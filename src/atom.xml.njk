@@ -14,7 +14,7 @@ permalink: atom.xml
     <entry>
         <title>{{ post.title }}</title>
         <id>{{ metadata.url }}/{{ post.uuid }}</id>
-        <link>{{ metadata.url }}/{{ post.uuid }}</link>
+        <link href="{{ metadata.url }}/{{ post.uuid }}"></link>
         <updated>{{ post.date.toUTCString() }}</updated>
         {% if post.summary %}
         <summary type="html"><![CDATA[{{ post.summary | safe | escapeXml }}]]></summary>

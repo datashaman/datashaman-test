@@ -33,7 +33,7 @@ module.exports = () => {
   posts.forEach(post => {
     let item = {
       title: post.title || '',
-      id: `urn:uuid:${post.uuid}`,
+      id: `${metadata.url}${post.uuid}/`,
       link: `${metadata.url}${post.uuid}/`,
       description: post.summary || '',
       content: post.html || post.text || '',

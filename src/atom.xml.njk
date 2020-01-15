@@ -13,7 +13,7 @@ permalink: atom.xml
     {% for post in posts %}
     <entry>
         <title>{{ post.title }}</title>
-        <id>urn:uuid:{{ post.uuid }}/</id>
+        <id>urn:uuid:{{ post.uuid }}</id>
         <link href="{{ metadata.url }}{{ post.uuid }}/"></link>
         <link rel="alternate" type="text/html" href="{{ metadata.url }}{{ post.uuid }}/index.html"/>
         <updated>{{ post.date.toISOString() }}</updated>

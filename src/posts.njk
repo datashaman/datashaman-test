@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+pagination:
+    data: posts
+    size: 1
+    alias: post
+permalink: "{{ post.uuid }}/index.html"
+templateClass: tmpl-post
+---
+{% if post.html %}
+{{ post.html | safe }}
+{% elseif post.text %}
+<p>{{ post.text }}</p>
+{% endif %}
+
+{% if post.photo %}
+<ul class="photos">
+    {% for photo in post.photo %}
+    {% if photo.value %}
+    <li class="photo"><img src="{{ photo.value }}" width="400" height="300" alt="{{ photo.alt }}"/></li>
+    {% else %}
+    <li class="photo"><img src="{{ photo }}"/></li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if post.tags %}
+<ul>
+    {% for tag in post.tags %}
+    <li>{{ tag }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<p><a href="{{ '/' | url }}">← Home</a></p>

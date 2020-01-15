@@ -1,0 +1,15 @@
+{
+  "title": "datashaman",
+  "url": "https://datashaman.com",
+  "description": "Freelance developer. Open-source solutions. Wannabe writer.",
+  "feed": {
+    "subtitle": "Freelance developer. Open-source solutions. Wannabe writer.",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://myurl.com/"
+  },
+  "author": {
+    "name": "Your Name Here",
+    "email": "youremailaddress@example.com"
+  }
+}

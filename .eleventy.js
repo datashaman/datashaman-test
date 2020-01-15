@@ -1,44 +1,27 @@
 const { DateTime } = require("luxon");
+const Entities = require('html-entities').XmlEntities;
 const fs = require("fs");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+const metadata = require('./src/_data/metadata.json');
+const nunjucks = require('nunjucks');
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
+const entities = new Entities();
+
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(pluginSyntaxHighlight);
-  eleventyConfig.addPlugin(pluginNavigation);
-
-  eleventyConfig.setDataDeepMerge(true);
-
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
-
-  eleventyConfig.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
-  });
-
-  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
-  });
-
-  // Get the first `n` elements of a collection.
-  eleventyConfig.addFilter("head", (array, n) => {
-    if( n < 0 ) {
-      return array.slice(n);
-    }
-
-    return array.slice(0, n);
-  });
-
   eleventyConfig.addCollection("tagList", require("./_11ty/getTagList"));
-
-  eleventyConfig.addPassthroughCopy("src/img");
+  eleventyConfig.addFilter('absolute', value => value.indexOf('://') === -1 ? `${metadata.url}/${value}` : value);
+  eleventyConfig.addFilter('date', require('nunjucks-date'));
+  eleventyConfig.addFilter('escapeXml', value => entities.encodeNonUTF(value));
+  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/img");
+  eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(pluginSyntaxHighlight);
+  eleventyConfig.setDataDeepMerge(true)
 
-  /* Markdown Overrides */
   let markdownLibrary = markdownIt({
     html: true,
     breaks: true,
@@ -48,16 +31,15 @@ module.exports = function(eleventyConfig) {
     permalinkClass: "direct-link",
     permalinkSymbol: "#"
   });
+
   eleventyConfig.setLibrary("md", markdownLibrary);
 
-  // Browsersync Overrides
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function(err, browserSync) {
         const content_404 = fs.readFileSync('_site/404.html');
 
         browserSync.addMiddleware("*", (req, res) => {
-          // Provides the 404 content without redirect.
           res.write(content_404);
           res.end();
         });
@@ -75,21 +57,10 @@ module.exports = function(eleventyConfig) {
       "liquid"
     ],
 
-    // If your site lives in a different subdirectory, change this.
-    // Leading or trailing slashes are all normalized away, so don’t worry about those.
-
-    // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
-    // This is only used for link URLs (it does not affect your file structure)
-    // Best paired with the `url` filter: https://www.11ty.io/docs/filters/url/
-
-    // You can also pass this in on the command line using `--pathprefix`
-    // pathPrefix: "/",
-
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
 
-    // These are all optional, defaults are shown:
     dir: {
       input: "src",
       includes: "_includes",

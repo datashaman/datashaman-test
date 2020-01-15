@@ -13,7 +13,7 @@ permalink: rss.xml
         <!--<atom:link href="https://datashaman.com/feed.atom" rel="self" type="application/rss+xml"/>-->
         {% for post in posts %}
         <item>
-            <title><![CDATA[{{ post.title | safe | escapeXml }}]]></title>
+            <title>{{ post.title }}</title>
             <link>{{ metadata.url }}/{{ post.uuid }}/</link>
             <guid>{{ metadata.url }}/{{ post.uuid }}/</guid>
             <pubDate>{{ post.date.toUTCString() }}</pubDate>

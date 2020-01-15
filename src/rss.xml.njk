@@ -13,12 +13,12 @@ permalink: rss.xml
         <!--<atom:link href="https://datashaman.com/feed.atom" rel="self" type="application/rss+xml"/>-->
         {% for post in posts %}
         <item>
-            <title>{{ post.title }}</title>
+            <title><![CDATA[{{ post.title | safe | escapeXml }}]]></title>
             <link>{{ metadata.url }}/{{ post.uuid }}/</link>
             <guid>{{ metadata.url }}/{{ post.uuid }}/</guid>
             <pubDate>{{ post.date.toUTCString() }}</pubDate>
             {% if post.summary %}
-            <description>{{ post.summary | escapeXml }}</description>
+            <description><![CDATA[{{ post.summary | safe | escapeXml }}]]></description>
             {% endif %}
         </item>
         {% endfor %}

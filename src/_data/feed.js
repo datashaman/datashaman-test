@@ -29,9 +29,6 @@ module.exports = () => {
       link: `${metadata.url}${post.uuid}/`,
       description: post.summary || '',
       content: post.html || post.text || '',
-      author: [
-        metadata.author,
-      ],
       date: post.date,
     }
 

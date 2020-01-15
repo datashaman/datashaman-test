@@ -12,9 +12,7 @@ permalink: atom.xml
     <subtitle>{{ metadata.description }}</subtitle>
     {% for post in posts %}
     <entry>
-        {% if post.title %}
         <title>{{ post.title }}</title>
-        {% endif %}
         <id>{{ metadata.url }}{{ post.uuid }}/</id>
         <link href="{{ metadata.url }}{{ post.uuid }}/"></link>
         <link rel="alternate" type="text/html" href="{{ metadata.url }}{{ post.uuid }}/index.html"/>

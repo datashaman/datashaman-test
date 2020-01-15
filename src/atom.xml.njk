@@ -19,6 +19,10 @@ permalink: atom.xml
         {% if post.summary %}
         <summary type="html"><![CDATA[{{ post.summary | safe | escapeXml }}]]></summary>
         {% endif %}
+        <author>
+          <name>{{ metadata.author }}</name>
+          <email>{{ metadata.email }}</email>
+        </author>
     </entry>
     {% endfor %}
 </feed>

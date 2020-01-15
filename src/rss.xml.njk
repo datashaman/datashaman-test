@@ -10,7 +10,7 @@ permalink: rss.xml
         <lastBuildDate>{{ now.toUTCString() }}</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <!--<generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>-->
-        <!--<atom:link href="https://datashaman.com/feed.atom" rel="self" type="application/rss+xml"/>-->
+        <atom:link href="https://datashaman.com/feed.atom" rel="self" type="application/rss+xml"/>
         {% for post in posts %}
         <item>
             <title>{{ post.title }}</title>

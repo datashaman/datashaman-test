@@ -17,6 +17,7 @@ permalink: atom.xml
         {% endif %}
         <id>{{ metadata.url }}{{ post.uuid }}/</id>
         <link href="{{ metadata.url }}{{ post.uuid }}/"></link>
+        <link rel="alternate" type="text/html" href="{{ metadata.url }}{{ post.uuid }}/index.html"/>
         <updated>{{ post.date.toISOString() }}</updated>
         {% if post.summary %}
         <summary type="html"><![CDATA[{{ post.summary | safe | escapeXml }}]]></summary>

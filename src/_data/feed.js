@@ -2,26 +2,34 @@ const Feed = require('feed').Feed
 const metadata = require('./metadata.json')
 const posts = require('./posts.js')()
 
-module.exports = () => {
-  const feed = new Feed({
-    title: metadata.title,
-    description: metadata.description,
-    id: metadata.url,
-    link: metadata.url,
-    language: "en",
-    image: "/img/profile.png",
-    favicon: `${metadata.url}favicon.ico`,
-    copyright: `All rights reserved &copy; ${(new Date()).getFullYear()} ${metadata.author.name}`,
-    updated: new Date(),
-    generator: metadata.generator,
-    feed: `${metadata.url}rss.xml`,
-    feedLinks: {
-      atom: `${metadata.url}atom.xml`,
-      json: `${metadata.url}feed.json`,
-    },
-    author: metadata.author,
-  })
+const author = {
+  "name": "Marlin Forbes",
+  "email": "marlinf@datashaman.com",
+  "link": "https://datashaman.com/"
+}
 
+const generator = "https://github.com/datashaman/datashaman.com"
+
+const feed = new Feed({
+  title: metadata.title,
+  description: metadata.description,
+  id: metadata.url,
+  link: metadata.url,
+  language: "en",
+  image: `${metadata.url}img/profile.png`,
+  favicon: `${metadata.url}favicon.ico`,
+  copyright: `All rights reserved &copy; ${(new Date()).getFullYear()} ${author.name}`,
+  updated: new Date(),
+  generator: metadata.generator,
+  feedLinks: {
+    atom: `${metadata.url}atom.xml`,
+    json: `${metadata.url}feed.json`,
+    rss: `${metadata.url}rss.xml`,
+  },
+  author,
+})
+
+module.exports = () => {
   posts.forEach(post => {
     let item = {
       title: post.title || '',

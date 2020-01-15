@@ -1,11 +1,5 @@
 {
   "title": "datashaman",
   "url": "https://datashaman-test.now.sh/",
-  "description": "Freelance developer. Open-source solutions. Wannabe writer.",
-  "generator": "https://github.com/datashaman/datashaman.com",
-  "author": {
-    "name": "Marlin Forbes",
-    "email": "marlinf@datashaman.com",
-    "link": "https://datashaman.com/"
-  }
+  "description": "Freelance developer. Open-source solutions. Wannabe writer."
 }

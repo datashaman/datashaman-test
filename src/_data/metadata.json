@@ -2,14 +2,10 @@
   "title": "datashaman",
   "url": "https://datashaman-test.now.sh/",
   "description": "Freelance developer. Open-source solutions. Wannabe writer.",
-  "feed": {
-    "subtitle": "Freelance developer. Open-source solutions. Wannabe writer.",
-    "filename": "feed.xml",
-    "path": "/feed/feed.xml",
-    "id": "https://myurl.com/"
-  },
+  "generator": "https://github.com/datashaman/datashaman.com",
   "author": {
     "name": "Marlin Forbes",
-    "email": "marlinf@datashaman.com"
+    "email": "marlinf@datashaman.com",
+    "link": "https://datashaman.com/"
   }
 }

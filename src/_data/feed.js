@@ -1,44 +1,36 @@
 const Feed = require('feed').Feed
+const metadata = require('./metadata.json')
 const posts = require('./posts.js')()
-
-const name = 'Marlin Forbes'
-const author = {
-    name,
-    email: "marlinf@datashaman.com",
-    link: "https://datashaman.com/",
-}
 
 module.exports = () => {
   const feed = new Feed({
-    title: "datashaman",
-    description: "Freelance developer. Open-source solutions. Wannabe writer.",
-    id: "https://datashaman.com/",
-    link: "https://datashaman.com/",
+    title: metadata.title,
+    description: metadata.description,
+    id: metadata.url,
+    link: metadata.url,
     language: "en",
-    image: "https://datashaman.com/img/profile.png",
-    favicon: "https://datashaman.com/favicon.ico",
-    copyright: `All rights reserved &copy; ${(new Date()).getFullYear()} ${name}`,
+    image: "/img/profile.png",
+    favicon: `${metadata.url}favicon.ico`,
+    copyright: `All rights reserved &copy; ${(new Date()).getFullYear()} ${metadata.author.name}`,
     updated: new Date(),
-    generator: 'https://github.com/datashaman/datashaman.com',
-    feed: 'https://datashaman.com/rss.xml',
+    generator: metadata.generator,
+    feed: `${metadata.url}/rss.xml`,
     feedLinks: {
-      atom: "https://datashaman.com/atom.xml",
-      json: "https://datashaman.com/feed.json",
+      atom: `${metadata.url}atom.xml`,
+      json: `${metadata.url}feed.json`,
     },
-    author,
+    author: metadata.author,
   })
 
   posts.forEach(post => {
-    console.log(post)
-
     let item = {
       title: post.title || '',
       id: `urn:uuid:${post.uuid}`,
-      link: `${author.link}${post.uuid}/`,
+      link: `${metadata.url}${post.uuid}/`,
       description: post.summary || '',
       content: post.html || post.text || '',
       author: [
-        author,
+        metadata.author,
       ],
       date: post.date,
     }

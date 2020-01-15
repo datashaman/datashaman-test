@@ -1,0 +1,24 @@
+---
+permalink: atom.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>{{ metadata.url }}</id>
+    <title>{{ metadata.title }}</title>
+    <updated>{{ now.toUTCString() }}</updated>
+    <!--<generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>-->
+    <link rel="alternate" href="{{ metadata.url }}"/>
+    <link rel="self" href="{{ metadata.url }}/{{ permalink }}"/>
+    <subtitle>{{ metadata.description }}</subtitle>
+    {% for post in posts %}
+    <entry>
+        <title>{{ post.title }}</title>
+        <id>{{ metadata.url }}/{{ post.uuid }}</id>
+        <link>{{ metadata.url }}/{{ post.uuid }}</link>
+        <updated>{{ post.date.toISOString() }}</updated>
+        {% if post.summary %}
+        <summary type="html"><![CDATA[{{ post.summary | safe | escapeXml }}]]></summary>
+        {% endif %}
+    </entry>
+    {% endfor %}
+</feed>

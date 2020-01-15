@@ -10,12 +10,12 @@ permalink: rss.xml
         <lastBuildDate>{{ now.toUTCString() }}</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <!--<generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>-->
-        <atom:link href="{{ metadata.url }}/{{ permalink }}" rel="self" type="application/rss+xml"/>
+        <atom:link href="{{ metadata.url }}{{ permalink }}" rel="self" type="application/rss+xml"/>
         {% for post in posts %}
         <item>
             <title>{{ post.title }}</title>
-            <link>{{ metadata.url }}/{{ post.uuid }}/</link>
-            <guid>{{ metadata.url }}/{{ post.uuid }}/</guid>
+            <link>{{ metadata.url }}{{ post.uuid }}/</link>
+            <guid>{{ metadata.url }}{{ post.uuid }}/</guid>
             <pubDate>{{ post.date.toUTCString() }}</pubDate>
             {% if post.summary %}
             <description><![CDATA[{{ post.summary | safe | escapeXml }}]]></description>

@@ -8,13 +8,13 @@ permalink: atom.xml
     <updated>{{ now.toISOString() }}</updated>
     <!--<generator>https://github.com/webmasterish/vuepress-plugin-feed</generator>-->
     <link rel="alternate" href="{{ metadata.url }}"/>
-    <link rel="self" href="{{ metadata.url }}/{{ permalink }}"/>
+    <link rel="self" href="{{ metadata.url }}{{ permalink }}"/>
     <subtitle>{{ metadata.description }}</subtitle>
     {% for post in posts %}
     <entry>
         <title>{{ post.title }}</title>
-        <id>{{ metadata.url }}/{{ post.uuid }}</id>
-        <link href="{{ metadata.url }}/{{ post.uuid }}"></link>
+        <id>{{ metadata.url }}{{ post.uuid }}</id>
+        <link href="{{ metadata.url }}{{ post.uuid }}"></link>
         <updated>{{ post.date.toISOString() }}</updated>
         {% if post.summary %}
         <summary type="html"><![CDATA[{{ post.summary | safe | escapeXml }}]]></summary>

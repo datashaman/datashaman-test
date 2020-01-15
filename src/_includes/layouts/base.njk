@@ -7,7 +7,9 @@
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
-    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
+    <link rel="alternate" type="application/rss+xml" href="https://datashaman.com/rss.xml" title="datashaman RSS Feed">
+    <link rel="alternate" type="application/atom+xml" href="https://datashaman.com/feed.atom" title="datashaman Atom Feed">
+    <link rel="alternate" type="application/json" href="https://datashaman.com/feed.json" title="datashaman JSON Feed">
   </head>
   <body>
     <header>

@@ -20,8 +20,8 @@ permalink: atom.xml
         <summary type="html"><![CDATA[{{ post.summary | safe | escapeXml }}]]></summary>
         {% endif %}
         <author>
-          <name>{{ metadata.author }}</name>
-          <email>{{ metadata.email }}</email>
+          <name>{{ metadata.author.name }}</name>
+          <email>{{ metadata.author.email }}</email>
         </author>
     </entry>
     {% endfor %}

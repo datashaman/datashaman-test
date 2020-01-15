@@ -14,7 +14,7 @@ module.exports = () => {
     copyright: `All rights reserved &copy; ${(new Date()).getFullYear()} ${metadata.author.name}`,
     updated: new Date(),
     generator: metadata.generator,
-    feed: `${metadata.url}/rss.xml`,
+    feed: `${metadata.url}rss.xml`,
     feedLinks: {
       atom: `${metadata.url}atom.xml`,
       json: `${metadata.url}feed.json`,

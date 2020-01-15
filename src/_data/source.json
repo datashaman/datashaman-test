@@ -267,12 +267,12 @@
                 "foo bar"
             ],
             "photo": [
-                "http://a/png",
-                "http://b/jpg"
+                "http://placekitten.com/400/300",
+                "http://placekitten.com/400/300"
             ],
             "featured": [
-                "http://b/jpg",
-                "http://c/gif"
+                "http://placekitten.com/400/300",
+                "http://placekitten.com/400/300"
             ]
         }
     },

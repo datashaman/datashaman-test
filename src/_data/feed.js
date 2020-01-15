@@ -18,7 +18,7 @@ const feed = new Feed({
   language: "en",
   image: `${metadata.url}img/profile.png`,
   favicon: `${metadata.url}favicon.ico`,
-  copyright: `All rights reserved &copy; ${(new Date()).getFullYear()} ${author.name}`,
+  copyright: `All rights reserved ©${(new Date()).getFullYear()} ${author.name}`,
   updated: new Date(),
   generator: metadata.generator,
   feedLinks: {

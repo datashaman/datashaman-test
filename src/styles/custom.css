@@ -1,0 +1,55 @@
+* {
+    transition: all 0.2s ease-out;
+}
+
+body {
+  line-height: 1.5;
+  background-color: #fffff8;
+  color: #111;
+}
+
+main {
+  max-width: 110ch;
+  padding: 2ch;
+  margin: auto;
+}
+
+footer {
+  border-top: 1px solid #ddd;
+  padding-top: 0.5em;
+  margin-top: 1em;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+time {
+  color: #666;
+  font-size: x-small;
+  font-weight: 400;
+}
+
+time:hover {
+  font-weight: 600;
+}
+
+footer {
+  font-size: small;
+}
+
+footer time {
+  font-size: inherit;
+}
+
+section > article {
+  padding: 0.2rem 0;
+}
+
+p {
+  margin: 0.5em 0;
+}

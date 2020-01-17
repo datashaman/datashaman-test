@@ -1,14 +1,24 @@
 ---
-layout: layouts/home.njk
-eleventyNavigation:
-  key: Home
-  order: 1
+layout: default
+eleventyExcludeFromCollections: true
+name: datashaman
 ---
+<section>
+  {% for page in collections.all %}
+  <article class="pure-g">
+    <div class="pure-u-1 pure-u-lg-1-8">
+      <a href="{{ page.url }}"><time>{{ page.date | date('yyyy/MM/dd HH:mm') }}</time></a>
+    </div>
 
-<h1>Latest 3 Posts</h1>
-
-{% set postslist = posts %}
-{% set postslistCounter = posts | length %}
-{% include "postslist.njk" %}
-
-<p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+    <div class="pure-u-1 pure-u-lg-7-8">
+      {% autolink %}
+        {% if page.data.layout === 'note' %}
+          {{ page.templateContent | safe }}
+        {% else %}
+          {{ page.data.name }}
+        {% endif %}
+      {% endautolink %}
+    </div>
+  </article>
+  {% endfor %}
+</section>

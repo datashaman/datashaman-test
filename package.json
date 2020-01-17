@@ -3,10 +3,14 @@
   "version": "5.0.2",
   "description": "A starter repository for a blog web site using the Eleventy static site generator.",
   "scripts": {
-    "build": "cd node_modules/feed/ && npm install && npm run build && cd ../../ && eleventy",
-    "watch": "eleventy --watch",
-    "serve": "eleventy --serve",
-    "debug": "DEBUG=* eleventy"
+    "11ty-build": "cd node_modules/feed/ && npm install && npm run build && cd ../../ && eleventy",
+    "11ty-watch": "eleventy --watch",
+    "11ty-serve": "eleventy --serve",
+    "11ty-debug": "DEBUG=* eleventy",
+    "tw-serve": "cross-env NODE_ENV=development concurrently \"postcss src/_assets/styles/site.css -o src/styles/site.css --watch\"  \"live-server ./src\"",
+    "tw-watch": "cross-env NODE_ENV=development postcss src/_assets/styles/site.css -o src/styles/site.css --watch",
+    "tw-development": "cross-env NODE_ENV=development postcss src/_assets/styles/site.css -o src/styles/site.css",
+    "tw-production": "cross-env NODE_ENV=production postcss src/_assets/styles/site.css -o src/styles/site.css"
   },
   "repository": {
     "type": "git",
@@ -26,13 +30,13 @@
     "@11ty/eleventy": "^0.10.0",
     "@11ty/eleventy-navigation": "^0.1.3",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "autolinker": "^3.11.1",
     "feed": "datashaman/feed#hotfix/self-links",
     "html-entities": "^1.2.1",
-    "luxon": "^1.21.3",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.2.5",
     "node-uuid": "^1.4.8",
-    "nunjucks-date": "^1.4.0"
-  },
-  "dependencies": {}
+    "nunjucks-date": "^1.4.0",
+    "purecss": "^1.0.1"
+  }
 }

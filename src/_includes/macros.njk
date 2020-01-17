@@ -1,0 +1,6 @@
+{% macro entryFooter(metadata, page) %}
+<footer>
+  Published by <a class="p-author h-card" href="{{ metadata.author.link }}">{{ metadata.author.name }}</a>
+  on <a href="{{ page.url }}"><time class="dt-published" datetime="{{ page.date.toISOString() }}">{{ page.date | date('yyyy/MM/dd HH:mm') }}</time></a>
+</footer>
+{% endmacro %}

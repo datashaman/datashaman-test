@@ -60,11 +60,8 @@ p {
 
 .references {
   list-style: none;
+  margin-top: 30px;
   padding: 0;
-}
-
-.layout-entry .references {
-  margin-top: 40px;
 }
 
 .references img {

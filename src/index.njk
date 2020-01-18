@@ -16,9 +16,11 @@ name: datashaman
       {% if page.data.summary or page.templateContent %}
         <div class="e-content">
           {{ page.data.summary | default(page.templateContent) | autolink | emojify | nl2br | safe }}
+          {% if page.data.summary %}<a href="{{ page.url }}">more</a>{% endif %}
         </div>
       {% endif %}
       {% if page.data.photos %}{{ gallery(page.data.photos, '120px') }}{% endif %}
+      {{ page.templateContent | references | safe }}
     </div>
   </article>
   {% endfor %}

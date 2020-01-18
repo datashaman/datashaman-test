@@ -59,8 +59,12 @@ p {
 }
 
 .references {
-  margin-top: 40px;
+  list-style: none;
   padding: 0;
+}
+
+.layout-entry .references {
+  margin-top: 40px;
 }
 
 .references img {

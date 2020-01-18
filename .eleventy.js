@@ -37,12 +37,16 @@ const references = async (content, callback) => {
         ? `<img src="${metadata.image}">`
         : '';
 
-      result += `<li class="flex five">
-        <div class="fifth">${image}</div>
-        <div class="four-fifth">
-          <div><a href="${metadata.url}">${metadata.title}</a></div>
-          <div>${description}</div>
+      result += `<li>
+        <blockquote>
+        <div class="flex five">
+          <div class="fifth">${image}</div>
+          <div class="four-fifth">
+            <div><a href="${metadata.url}">${metadata.title}</a></div>
+            <div>${Autolinker.link(description)}</div>
+          </div>
         </div>
+        </blockquote>
       </li>`
     })
 

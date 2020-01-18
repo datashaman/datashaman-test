@@ -1,42 +1,49 @@
 {
-  "name": "eleventy-base-blog",
-  "version": "5.0.2",
-  "description": "A starter repository for a blog web site using the Eleventy static site generator.",
+  "name": "datashaman-test",
+  "version": "0.1.0",
+  "description": "Source for datashaman-test.now.sh.",
+  "private": true,
   "scripts": {
-    "11ty-build": "cd node_modules/feed/ && npm install && npm run build && cd ../../ && eleventy",
-    "11ty-watch": "eleventy --watch",
-    "11ty-serve": "eleventy --serve",
-    "11ty-debug": "DEBUG=* eleventy",
-    "tw-serve": "cross-env NODE_ENV=development concurrently \"postcss src/_assets/styles/site.css -o src/styles/site.css --watch\"  \"live-server ./src\"",
-    "tw-watch": "cross-env NODE_ENV=development postcss src/_assets/styles/site.css -o src/styles/site.css --watch",
-    "tw-development": "cross-env NODE_ENV=development postcss src/_assets/styles/site.css -o src/styles/site.css",
-    "tw-production": "cross-env NODE_ENV=production postcss src/_assets/styles/site.css -o src/styles/site.css"
+    "build": "make build"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/11ty/eleventy-base-blog.git"
+    "url": "git://github.com/datashaman/datashaman-test.git"
   },
   "author": {
-    "name": "Zach Leatherman",
-    "email": "zachleatherman@gmail.com",
-    "url": "https://zachleat.com/"
+    "name": "Marlin Forbes",
+    "email": "marlinf@datashaman.com",
+    "url": "https://datashaman.com/"
   },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/11ty/eleventy-base-blog/issues"
-  },
-  "homepage": "https://github.com/11ty/eleventy-base-blog#readme",
+  "homepage": "https://datashaman-test.now.sh/",
   "devDependencies": {
     "@11ty/eleventy": "^0.10.0",
     "@11ty/eleventy-navigation": "^0.1.3",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.1",
+    "async": "^3.1.0",
     "autolinker": "^3.11.1",
+    "concurrently": "^5.0.2",
     "feed": "datashaman/feed#hotfix/self-links",
+    "get-urls": "^9.2.0",
+    "got": "^10.2.2",
     "html-entities": "^1.2.1",
+    "jquery": "^3.4.1",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.2.5",
+    "metascraper": "^5.10.3",
+    "metascraper-description": "^5.10.3",
+    "metascraper-image": "^5.10.3",
+    "metascraper-logo-favicon": "^5.10.3",
+    "metascraper-title": "^5.10.3",
+    "metascraper-url": "^5.10.3",
+    "node-emoji": "^1.10.0",
     "node-uuid": "^1.4.8",
     "nunjucks-date": "^1.4.0",
-    "purecss": "^1.0.1"
+    "picnic": "^6.5.2",
+    "slick-carousel": "^1.8.1",
+    "webpack": "^4.0.0 || ^5.0.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }

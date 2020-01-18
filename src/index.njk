@@ -3,21 +3,22 @@ layout: default
 eleventyExcludeFromCollections: true
 name: datashaman
 ---
+{% from 'macros.njk' import gallery %}
+
 <section>
   {% for page in collections.all %}
-  <article class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-8">
-      <a href="{{ page.url }}"><time>{{ page.date | date('yyyy/MM/dd HH:mm') }}</time></a>
+  <article class="flex one five-1100">
+    <div class="one fifth-1100">
+      <a href="{{ page.url }}"><time>{{ page.date | formatDate('yyyy/MM/dd HH:mm') }}</time></a>
     </div>
 
-    <div class="pure-u-1 pure-u-lg-7-8">
-      {% autolink %}
-        {% if page.data.layout === 'note' %}
-          {{ page.templateContent | safe }}
-        {% else %}
-          {{ page.data.name }}
-        {% endif %}
-      {% endautolink %}
+    <div class="one four-fifth-1100">
+      {% if page.data.summary or page.templateContent %}
+        <div class="e-content">
+          {{ page.data.summary | default(page.templateContent) | autolink | emojify | nl2br | safe }}
+        </div>
+      {% endif %}
+      {% if page.data.photos %}{{ gallery(page.data.photos, '120px') }}{% endif %}
     </div>
   </article>
   {% endfor %}

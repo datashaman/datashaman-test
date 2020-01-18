@@ -4,3 +4,11 @@
   on <a href="{{ page.url }}"><time class="dt-published" datetime="{{ page.date.toISOString() }}">{{ page.date | date('yyyy/MM/dd HH:mm') }}</time></a>
 </footer>
 {% endmacro %}
+
+{% macro gallery(photos, height='120px') %}
+  <div class="photos">
+    {% for photo in photos %}
+    <div style="height: {{ height }}"><img src="{{ photo }}"/></div>
+    {% endfor %}
+  </div>
+{% endmacro %}

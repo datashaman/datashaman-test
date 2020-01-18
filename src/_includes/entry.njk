@@ -1,22 +1,24 @@
 ---
 layout: default
 ---
-{% from './macros.njk' import entryFooter %}
+{% from 'macros.njk' import gallery %}
 
-<article class="h-entry">
-  {% if name %}
-  <h1 class="p-name">{{ name }}</h1>
-  {% endif %}
+<section>
+  <article class="flex one five-1100">
+    <div class="one fifth-1100">
+      <a href="{{ url }}"><time>{{ date | formatDate('yyyy/MM/dd HH:mm') }}</time></a>
+    </div>
 
-  {% if summary %}
-  <q class="p-summary">{{ summary }}</q>
-  {% endif %}
-
-  {% if content %}
-  <div class="e-content">
-    {{ content | safe }}
-  </div>
-  {% endif %}
-
-  {{ entryFooter(metadata, page) }}
-</article>
+    <div class="one four-fifth-1100">
+      {% if content %}
+        <div class="e-content">
+          {{ content | autolink | emojify | nl2br | safe }}
+        </div>
+      {% endif %}
+      {% if photos %}
+        {{ gallery(photos, '300px') }}
+      {% endif %}
+      {{ content | references | safe }}
+    </div>
+  </article>
+</section>

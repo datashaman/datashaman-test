@@ -5,24 +5,27 @@ WEBPACK_FLAGS =
 
 default: serve
 
-build: clean
-	cp -a node_modules/slick-carousel/slick/ src/
-	cp node_modules/picnic/picnic.min.css src/styles
-	cp src/_styles/custom.css src/styles
-	webpack $(WEBPACK_FLAGS)
-	eleventy $(ELEVENTY_FLAGS)
+build:
+	@echo "Build gulp assets"
+	@gulp build
+	@echo "Build webpack assets"
+	@webpack $(WEBPACK_FLAGS)
+	@echo "Build eleventy site"
+	@eleventy $(ELEVENTY_FLAGS)
 
 build-npm:
 	cd node_modules/feed && npm install && npm run build
 
 clean:
-	rm -rf src/styles/* src/scripts/* _site
+	@echo "Clean files"
+	@gulp clean
+	@rm -rf src/scripts/bundle.js _site
 
 debug:
-	DEBUG=Eleventy* eleventy $(ELEVENTY_FLAGS) --serve
+	DEBUG=Eleventy* concurrently "gulp watch" "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"
 
 serve:
-	concurrently "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"
+	concurrently "gulp watch" "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"
 
 wip:
 	git add .; git commit -m "wip"; git push

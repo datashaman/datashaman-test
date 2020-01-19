@@ -1,3 +1,6 @@
-_site/
-node_modules/
-package-lock.json
+/_site/
+/node_modules/
+/src/slick/
+/src/purecss/
+/src/scripts/
+/src/styles/

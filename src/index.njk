@@ -6,13 +6,13 @@ name: datashaman
 {% from 'macros.njk' import gallery %}
 
 <section>
-  {% for page in collections.all %}
-  <article class="flex one five-1100">
-    <div class="one fifth-1100">
+  {% for page in collections.entry %}
+  <article class="pure-g">
+    <div class="pure-u-1-6">
       <a href="{{ page.url }}"><time>{{ page.date | formatDate('yyyy/MM/dd HH:mm') }}</time></a>
     </div>
 
-    <div class="one four-fifth-1100">
+    <div class="pure-u-5-6">
       {% if page.data.summary or page.templateContent %}
         <div class="e-content">
           {{ page.data.summary | default(page.templateContent) | autolink | emojify | nl2br | safe }}

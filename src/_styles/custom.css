@@ -64,10 +64,9 @@ p {
   padding: 0;
 }
 
-.references img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.reference-img {
+  padding-right: 5px;
+  padding-bottom: 10px;
 }
 
 .layout-entry .photos {

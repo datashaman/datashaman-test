@@ -13,20 +13,20 @@ const metascraper = require('metascraper')([
   require('metascraper-url')(),
 ])
 
-const references = async (content, callback) => {
-  const urls = getUrls(content)
-  let result = ''
+const createReference = async sourceUrl => {
+}
 
-  if (urls.size) {
-    result += "\n\n<ul class='references'>"
+const references = async (content, cb) => {
+  return cb(null, '')
 
-    await async.each(getUrls(content), async (sourceUrl, cb) => {
+  const promises = Array
+    .from(getUrls(content))
+    .map(async (sourceUrl) => {
       const { body: html, url } = await got(sourceUrl)
-
       const metadata = await metascraper({ html, url })
 
       if (!metadata.title) {
-        return;
+        return ''
       }
 
       const description = metadata.description
@@ -34,26 +34,29 @@ const references = async (content, callback) => {
         : '';
 
       const image = metadata.image
-        ? `<img src="${metadata.image}">`
+        ? `<img class="pure-img" src="${metadata.image}">`
         : '';
 
-      result += `<li>
-        <blockquote>
-        <div class="flex five">
-          <div class="fifth">${image}</div>
-          <div class="four-fifth">
+      return `<li>
+        <div class="pure-g">
+          <div class="reference-img pure-u-1-8">${image}</div>
+          <div class="pure-u-7-8">
             <div><a href="${metadata.url}">${metadata.title}</a></div>
             <div>${Autolinker.link(description)}</div>
           </div>
         </div>
-        </blockquote>
       </li>`
     })
 
-    result += "\n</ul>"
-  }
+  Promise
+    .all(promises)
+    .then(results => {
+      const html = results.length
+        ? `<ul class="references">${results.join("\n")}</ul>`
+        : '';
 
-  callback(null, result)
+      cb(null, html)
+    })
 }
 
 module.exports = function(eleventyConfig) {
@@ -73,6 +76,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncFilter('references', references)
 
+  eleventyConfig.addPassthroughCopy('src/purecss')
   eleventyConfig.addPassthroughCopy('src/scripts')
   eleventyConfig.addPassthroughCopy('src/slick')
   eleventyConfig.addPassthroughCopy('src/styles')

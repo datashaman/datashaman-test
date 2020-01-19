@@ -113,6 +113,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncFilter('references', references)
 
+  eleventyConfig.addPassthroughCopy('src/images')
   eleventyConfig.addPassthroughCopy('src/scripts')
   eleventyConfig.addPassthroughCopy('src/styles')
 

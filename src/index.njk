@@ -20,7 +20,6 @@ name: datashaman
         </div>
       {% endif %}
       {% if page.data.photos %}{{ gallery(page, page.data.photos, '120px') }}{% endif %}
-      {{ page.templateContent | references | safe }}
     </div>
   </article>
   {% endfor %}

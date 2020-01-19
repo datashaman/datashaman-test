@@ -17,12 +17,6 @@ main {
   margin: auto;
 }
 
-footer {
-  border-top: 1px solid #ddd;
-  padding-top: 0.5em;
-  margin-top: 1em;
-}
-
 a {
   text-decoration: none;
 }
@@ -36,16 +30,19 @@ time {
   font-weight: 400;
 }
 
+footer {
+  border-top: 1px solid #ddd;
+  padding-top: 0.5em;
+  margin-top: 1em;
+  font-size: small;
+
+  time {
+    font-size: inherit;
+  }
+}
+
 time:hover {
   font-weight: 600;
-}
-
-footer {
-  font-size: small;
-}
-
-footer time {
-  font-size: inherit;
 }
 
 section > article {
@@ -67,7 +64,7 @@ p {
   padding-bottom: 10px;
 }
 
-.layout-entry .photos {
+.layout-post .photos {
   margin-top: 10px;
 }
 
@@ -80,7 +77,7 @@ p {
   height: 100%;
   top: -100%;
   left: 0;
-  color:#333333;
+  color: #333333;
   -webkit-transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   -o-transition: opacity .5s ease-in-out;
@@ -97,35 +94,35 @@ p {
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  min-width:500px;
+  min-width: 500px;
   margin: 2% auto;
-  padding:10px 20px 10px 20px;
-  background-color:#FFF;
+  padding: 10px 20px 10px 20px;
+  background-color: #FFF;
   box-shadow: 0px 1px 26px -3px #777777;
 }
 
 .lightbox .title {
-  margin:0;
-  padding:0 0 10px 0px;
-  border-bottom:1px #ccc solid;
-  font-size:22px;
+  margin: 0;
+  padding: 0 0 10px 0px;
+  border-bottom: 1px #ccc solid;
+  font-size: 22px;
 }
 
 .lightbox .content {
-  display:block;
-  position:relative;
+  display: block;
+  position: relative;
 }
 
 .lightbox .close {
-  display:block;
-  float:right;
-  text-decoration:none;
-  font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size:22px;
-  color:#858585;
+  display: block;
+  float: right;
+  text-decoration: none;
+  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  color: #858585;
 }
 
 .clear {
-  display:block;
-  clear:both;
+  display: block;
+  clear: both;
 }

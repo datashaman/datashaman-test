@@ -6,20 +6,21 @@ WEBPACK_FLAGS =
 default: serve
 
 build:
-	@echo "Build webpack assets"
-	@webpack $(WEBPACK_FLAGS)
-	@echo "Build eleventy site"
-	@eleventy $(ELEVENTY_FLAGS)
+	webpack $(WEBPACK_FLAGS)
+	eleventy $(ELEVENTY_FLAGS)
 
 build-npm:
 	cd node_modules/feed && npm install && npm run build
 
 clean:
-	@echo "Clean files"
-	@rm -rf src/scripts/bundle.js _site
+	rm -rf src/scripts/bundle.js _site
 
 debug:
 	DEBUG=Eleventy* concurrently "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"
+
+lint:
+	eslint scripts
+	stylelint styles
 
 serve:
 	concurrently "gulp watch" "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"

@@ -1,24 +1,25 @@
 ---
 layout: default
+tags:
+  - post
 ---
 {% from 'macros.njk' import gallery %}
 
 <section>
-  <article class="flex one five-1100">
-    <div class="one fifth-1100">
+  <article class="pure-g">
+    <div class="pure-u-1-6">
       <a href="{{ url }}"><time>{{ date | formatDate('yyyy/MM/dd HH:mm') }}</time></a>
     </div>
 
-    <div class="one four-fifth-1100">
+    <div class="pure-u-5-6">
       {% if content %}
         <div class="e-content">
           {{ content | autolink | emojify | nl2br | safe }}
         </div>
       {% endif %}
       {% if photos %}
-        {{ gallery(photos, '300px') }}
+        {{ gallery(page, photos, '300px') }}
       {% endif %}
-      {{ content | references | safe }}
     </div>
   </article>
 </section>

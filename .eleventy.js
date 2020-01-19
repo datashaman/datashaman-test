@@ -72,6 +72,8 @@ module.exports = function(eleventyConfig) {
     return `${prefix}-${counter++}`
   })
 
+  eleventyConfig.setDataDeepMerge(true)
+
   eleventyConfig.setLibrary('njk', nunjucksEnvironment)
 
   eleventyConfig.addFilter('formatDate', (content, format) => {

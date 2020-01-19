@@ -4,6 +4,8 @@ const DateTime = require('luxon').DateTime
 const emoji = require('node-emoji')
 const getUrls = require('get-urls')
 const got = require('got')
+const Nunjucks = require('nunjucks')
+const pluginSass = require("eleventy-plugin-sass")
 
 const metascraper = require('metascraper')([
   require('metascraper-description')(),
@@ -60,6 +62,18 @@ const references = async (content, cb) => {
 }
 
 module.exports = function(eleventyConfig) {
+  let nunjucksEnvironment = new Nunjucks.Environment(
+    new Nunjucks.FileSystemLoader('src/_includes')
+  )
+
+  let counter = 0
+
+  nunjucksEnvironment.addGlobal('uniqId', (prefix = 'id') => {
+    return `${prefix}-${counter++}`
+  })
+
+  eleventyConfig.setLibrary('njk', nunjucksEnvironment)
+
   eleventyConfig.addFilter('formatDate', (content, format) => {
     return DateTime
       .fromJSDate(content)
@@ -76,10 +90,10 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncFilter('references', references)
 
-  eleventyConfig.addPassthroughCopy('src/purecss')
   eleventyConfig.addPassthroughCopy('src/scripts')
-  eleventyConfig.addPassthroughCopy('src/slick')
   eleventyConfig.addPassthroughCopy('src/styles')
+
+  eleventyConfig.addPlugin(pluginSass)
 
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: true,

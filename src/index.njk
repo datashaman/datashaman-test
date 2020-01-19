@@ -6,7 +6,7 @@ name: datashaman
 {% from 'macros.njk' import gallery %}
 
 <section>
-  {% for page in collections.entry %}
+  {% for page in collections.post %}
   <article class="pure-g">
     <div class="pure-u-1-6">
       <a href="{{ page.url }}"><time>{{ page.date | formatDate('yyyy/MM/dd HH:mm') }}</time></a>
@@ -19,7 +19,7 @@ name: datashaman
           {% if page.data.summary %}<a href="{{ page.url }}">more</a>{% endif %}
         </div>
       {% endif %}
-      {% if page.data.photos %}{{ gallery(page.data.photos, '120px') }}{% endif %}
+      {% if page.data.photos %}{{ gallery(page, page.data.photos, '120px') }}{% endif %}
       {{ page.templateContent | references | safe }}
     </div>
   </article>

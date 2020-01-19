@@ -1,14 +1,19 @@
-{% macro entryFooter(metadata, page) %}
-<footer>
-  Published by <a class="p-author h-card" href="{{ metadata.author.link }}">{{ metadata.author.name }}</a>
-  on <a href="{{ page.url }}"><time class="dt-published" datetime="{{ page.date.toISOString() }}">{{ page.date | date('yyyy/MM/dd HH:mm') }}</time></a>
-</footer>
+{% macro photo(page, photo, height='120px') %}
+  {% set id = uniqId('photo') %}
+  <div id="{{ id }}" class="lightbox">
+    <div class="box">
+      <a class="close" href="#">X</a>
+      <div class="content">
+        <img src="{{ photo }}"/>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" data-target="#{{ id }}"><img src="{{ photo }}" height="{{ height }}"/></a>
 {% endmacro %}
 
-{% macro gallery(photos, height='120px') %}
-  <div class="photos">
-    {% for photo in photos %}
-    <div style="height: {{ height }}"><img src="{{ photo }}"/></div>
-    {% endfor %}
-  </div>
+{% macro gallery(page, photos, height='120px') %}
+  <section class="photos">
+    {% for p in photos %}{{ photo(page, p, height) }}{% endfor %}
+  </section>
 {% endmacro %}

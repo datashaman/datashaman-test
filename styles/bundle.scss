@@ -64,7 +64,7 @@ p {
   padding-bottom: 10px;
 }
 
-.layout-post .photos {
+.photos {
   margin-top: 10px;
 }
 
@@ -78,48 +78,50 @@ p {
   top: -100%;
   left: 0;
   color: #333333;
-  -webkit-transition: opacity .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  -o-transition: opacity .5s ease-in-out;
-  transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.lightbox-show {
+.lightbox--show {
   opacity: 1;
   outline: none;
   top: 0;
 }
 
-.lightbox .box {
+.lightbox__box {
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  min-width: 500px;
-  margin: 2% auto;
-  padding: 10px 20px 10px 20px;
-  background-color: #FFF;
+  margin: 10% auto;
+  background-color: #fff;
   box-shadow: 0px 1px 26px -3px #777777;
+  position: relative;
+  padding: 0;
 }
 
-.lightbox .title {
+.lightbox__title {
   margin: 0;
   padding: 0 0 10px 0px;
   border-bottom: 1px #ccc solid;
   font-size: 22px;
 }
 
-.lightbox .content {
+.lightbox__content {
   display: block;
   position: relative;
 }
 
-.lightbox .close {
-  display: block;
-  float: right;
+.lightbox__close {
+  position: absolute;
+  top: 0.3em;
+  right: 0.5em;
   text-decoration: none;
-  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 22px;
   color: #858585;
+  z-index: 1;
 }
 
 .clear {

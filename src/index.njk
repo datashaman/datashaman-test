@@ -19,7 +19,7 @@ name: datashaman
           {% if page.data.summary %}<a href="{{ page.url }}">more</a>{% endif %}
         </div>
       {% endif %}
-      {% if page.data.photos %}{{ gallery(page, page.data.photos, '120px') }}{% endif %}
+      {% if page.data.photos %}{{ gallery(page, page.data.photos, 120) }}{% endif %}
     </div>
   </article>
   {% endfor %}

@@ -5,7 +5,8 @@ const emoji = require('node-emoji')
 const getUrls = require('get-urls')
 const got = require('got')
 const Nunjucks = require('nunjucks')
-const pluginSass = require("eleventy-plugin-sass")
+const pluginLocalImages = require('eleventy-plugin-local-images')
+const pluginSass = require('eleventy-plugin-sass')
 
 const metascraper = require('metascraper')([
   require('metascraper-description')(),
@@ -15,31 +16,55 @@ const metascraper = require('metascraper')([
   require('metascraper-url')(),
 ])
 
-const createReference = async sourceUrl => {
+const createReference = async sourceUrl => {}
+
+const getReference = async sourceUrl => {
+  const {body: html, url} = await got(sourceUrl)
+  const metadata = await metascraper({html, url})
+
+  if (!metadata.title) {
+    return ''
+  }
+
+  const description = metadata.description
+    ? `<div>${metadata.description}</div>`
+    : ''
+
+  const image = metadata.image
+    ? `<img class="pure-img" src="${metadata.image}">`
+    : ''
+
+  return `<li>
+    <div class="pure-g">
+      <div class="reference-img pure-u-1-8">${image}</div>
+      <div class="pure-u-7-8">
+        <div><a href="${metadata.url}">${metadata.title}</a></div>
+        <div>${Autolinker.link(description)}</div>
+      </div>
+    </div>
+  </li>`
 }
 
 const references = async (content, cb) => {
   return cb(null, '')
 
-  const promises = Array
-    .from(getUrls(content))
-    .map(async (sourceUrl) => {
-      const { body: html, url } = await got(sourceUrl)
-      const metadata = await metascraper({ html, url })
+  const promises = Array.from(getUrls(content)).map(async sourceUrl => {
+    const {body: html, url} = await got(sourceUrl)
+    const metadata = await metascraper({html, url})
 
-      if (!metadata.title) {
-        return ''
-      }
+    if (!metadata.title) {
+      return ''
+    }
 
-      const description = metadata.description
-        ? `<div>${metadata.description}</div>`
-        : '';
+    const description = metadata.description
+      ? `<div>${metadata.description}</div>`
+      : ''
 
-      const image = metadata.image
-        ? `<img class="pure-img" src="${metadata.image}">`
-        : '';
+    const image = metadata.image
+      ? `<img class="pure-img" src="${metadata.image}">`
+      : ''
 
-      return `<li>
+    return `<li>
         <div class="pure-g">
           <div class="reference-img pure-u-1-8">${image}</div>
           <div class="pure-u-7-8">
@@ -48,17 +73,15 @@ const references = async (content, cb) => {
           </div>
         </div>
       </li>`
-    })
+  })
 
-  Promise
-    .all(promises)
-    .then(results => {
-      const html = results.length
-        ? `<ul class="references">${results.join("\n")}</ul>`
-        : '';
+  Promise.all(promises).then(results => {
+    const html = results.length
+      ? `<ul class="references">${results.join('\n')}</ul>`
+      : ''
 
-      cb(null, html)
-    })
+    cb(null, html)
+  })
 }
 
 module.exports = function(eleventyConfig) {
@@ -77,16 +100,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setLibrary('njk', nunjucksEnvironment)
 
   eleventyConfig.addFilter('formatDate', (content, format) => {
-    return DateTime
-      .fromJSDate(content)
-      .toFormat(format)
+    return DateTime.fromJSDate(content).toFormat(format)
   })
 
-  eleventyConfig.addFilter('emojify', (content) => {
+  eleventyConfig.addFilter('emojify', content => {
     return emoji.emojify(content)
   })
 
-  eleventyConfig.addFilter('autolink', (content) => {
+  eleventyConfig.addFilter('autolink', content => {
     return Autolinker.link(content)
   })
 
@@ -95,6 +116,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('src/scripts')
   eleventyConfig.addPassthroughCopy('src/styles')
 
+  eleventyConfig.addPlugin(pluginLocalImages, {
+    assetPath: '/images',
+    distPath: 'src',
+    useExisting: true,
+    verbose: true,
+  })
   eleventyConfig.addPlugin(pluginSass)
 
   eleventyConfig.setFrontMatterParsingOptions({

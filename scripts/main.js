@@ -2,21 +2,24 @@ import $ from 'domtastic'
 
 $(document).ready(() => {
   $(document)
-    .on('click focus', '.photos [data-target]', function(evt) {
+    .on('click', '.lightbox__thumbnail', function(evt) {
+      console.log('Clicked on thumbnail')
       evt.preventDefault()
 
-      $($(this).data('target')).addClass('lightbox-show')
+      $($(this).attr('href')).addClass('lightbox--show')
     })
-    .on('blur', '.photos [data-target]', function() {
-      $(this)
-        .closest('.lightbox')
-        .removeClass('lightbox-show')
-    })
-    .on('click', '.photos .close', function(evt) {
+    .on('click', '.lightbox__close', function(evt) {
+      console.log('Clicked close')
       evt.preventDefault()
 
       $(this)
         .closest('.lightbox')
-        .removeClass('lightbox-show')
+        .removeClass('lightbox--show')
+    })
+    .on('keyup', function(evt) {
+      console.log(evt)
+      if (evt.keyCode === 27) {
+        $('.lightbox--show').removeClass('lightbox--show')
+      }
     })
 })

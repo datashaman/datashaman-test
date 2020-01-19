@@ -1,19 +1,16 @@
-{% macro photo(page, photo, height='120px') %}
-  {% set id = uniqId('photo') %}
-  <div id="{{ id }}" class="lightbox">
-    <div class="box">
-      <a class="close" href="#">X</a>
-      <div class="content">
-        <img src="{{ photo }}"/>
+{% macro gallery(page, photos, height=120) %}
+  <section class="gallery">
+    {% for photo in photos %}
+    {% set id = uniqId('photo') %}
+    <div id="{{ id }}" class="lightbox">
+      <div class="lightbox__box">
+        <a class="lightbox__close" href="#">X</a>
+        <div class="lightbox__content">
+          <img src="{{ photo }}"/>
+        </div>
       </div>
     </div>
-  </div>
-
-  <a href="#" data-target="#{{ id }}"><img src="{{ photo }}" height="{{ height }}"/></a>
-{% endmacro %}
-
-{% macro gallery(page, photos, height='120px') %}
-  <section class="photos">
-    {% for p in photos %}{{ photo(page, p, height) }}{% endfor %}
+    <a class="lightbox__thumbnail" href="#{{ id }}"><img src="{{ photo }}" height="{{ height }}"/></a>
+    {% endfor %}
   </section>
 {% endmacro %}

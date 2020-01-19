@@ -23,7 +23,7 @@ lint:
 	stylelint styles
 
 serve:
-	concurrently "gulp watch" "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"
+	concurrently "webpack $(WEBPACK_FLAGS) --watch" "eleventy $(ELEVENTY_FLAGS) --serve"
 
 wip:
 	git add .; git commit -m "wip"; git push

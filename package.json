@@ -25,6 +25,7 @@
     "autolinker": "^3.11.1",
     "concurrently": "^5.0.2",
     "domtastic": "^0.15.12",
+    "eleventy-plugin-local-images": "github:datashaman/eleventy-plugin-local-images#feature/use-existing",
     "eleventy-plugin-sass": "^1.0.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
@@ -35,6 +36,7 @@
     "got": "^10.2.2",
     "gulp-concat": "^2.6.1",
     "html-entities": "^1.2.1",
+    "husky": "^4.0.10",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.2.5",
     "metascraper": "^5.10.3",
@@ -47,11 +49,17 @@
     "node-uuid": "^1.4.8",
     "nunjucks-date": "^1.4.0",
     "prettier": ">= 1.13.0",
+    "pretty-quick": "^2.0.1",
     "purecss": "^1.0.1",
     "stylelint": "^13.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "webpack": "^4.0.0 || ^5.0.0",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
